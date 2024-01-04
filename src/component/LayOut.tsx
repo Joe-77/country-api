@@ -1,9 +1,9 @@
-import Container from "./Container"
+import Routers from "../routing/Routers";
 
 const LayOut = () => {
   return (
     <>
-      <Container />
+      <Routers/>
     </>
   );
 }

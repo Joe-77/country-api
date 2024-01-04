@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { getData } from "../query/queryData";
 import { Context } from "../context/context";
+import { Link } from "react-router-dom";
 
 function Countries() {
   const { data } = getData();
   const { themes, search, filter } = useContext(Context);
-  console.log(data);
 
   function formatLargeNumber(number: number, decimalPlaces = 2) {
     return number.toLocaleString("en-US", {
@@ -25,7 +25,9 @@ function Countries() {
         )
         .filter((e: any) => (filter === "" ? e : e.region === filter))
         .map((e: any, id: number) => (
-          <div
+          <Link
+            to={`/about/${e?.name.common}`}
+            state={e}
             key={id}
             className={`${
               themes && `bg-[#2b3743] shadow-transparent `
@@ -50,7 +52,7 @@ function Countries() {
                 </span>
               </p>
             </div>
-          </div>
+          </Link>
         ))}
     </div>
   );

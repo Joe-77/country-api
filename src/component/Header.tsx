@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { Context } from "../context/context";
+import { Link } from "react-router-dom";
 const Header = () => {
   const { themes, changeThemes } = useContext(Context);
 
@@ -14,7 +15,7 @@ const Header = () => {
         } py-4`}
       >
         <div className="container m-auto px-4 md:px-0 flex items-center justify-between">
-          <h1 className="md:text-2xl font-bold">where in the world?</h1>
+          <Link to='/' className="md:text-2xl font-bold">where in the world?</Link>
           <div
             onClick={changeThemes}
             className="capitalize flex items-center gap-2 cursor-pointer select-none"
