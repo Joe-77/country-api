@@ -31,6 +31,12 @@ const About = () => {
       lang.push(location.languages[key] + ", ");
     }
   }
+  function formatLargeNumber(number: number, decimalPlaces = 2) {
+    return number.toLocaleString("en-US", {
+      style: "decimal",
+      maximumFractionDigits: decimalPlaces,
+    });
+  }
 
   return (
     <section
@@ -68,7 +74,7 @@ const About = () => {
                   </span>
                 </p>
                 <p className="capitalize mt-4 text-xs">
-                  population : {location.population}
+                  population : {formatLargeNumber(location.population)}
                 </p>
                 <p className="capitalize mt-4 text-xs">
                   region : <span className="italic">{location.region}</span>
