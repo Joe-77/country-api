@@ -1,11 +1,10 @@
 import { useContext } from "react";
-import { getData } from "../query/queryData";
 import { Context } from "../context/context";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Countries() {
-  const { data } = getData();
-  const { themes, search, filter } = useContext(Context);
+  const { themes, search, filter, data, setData } = useContext(Context);
 
   function formatLargeNumber(number: number, decimalPlaces = 2) {
     return number.toLocaleString("en-US", {
@@ -13,6 +12,8 @@ function Countries() {
       maximumFractionDigits: decimalPlaces,
     });
   }
+
+  axios("https://restcountries.com/v3.1/all").then((e) => setData(e.data));
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5">

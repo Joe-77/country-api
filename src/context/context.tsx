@@ -6,6 +6,7 @@ export const StoreData = ({children} : any)=> {
   const [themes , setThemes] = useState(false)
   const [search , setSearch] = useState("")
   const [filter , setFilter] = useState("")
+  const [data , setData] = useState([])
 
   const changeThemes : ()=> void = ()=> {
     setThemes(!themes);
@@ -29,6 +30,8 @@ export const StoreData = ({children} : any)=> {
         filter,
         setFilter,
         filterCountries,
+        data,
+        setData,
       }}
     >
       {children}

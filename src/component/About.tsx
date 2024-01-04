@@ -2,18 +2,14 @@ import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../context/context";
 import { FaArrowLeft } from "react-icons/fa";
-import { getData } from "../query/queryData";
 
 const About = () => {
-  const { data }: any = getData();
   const location = useLocation().state;
-  const { themes } = useContext(Context);
+  const { themes, data } = useContext(Context);
   let currency;
   const lang: {}[] = [];
 
-
   const filterCountries: any = [];
-  
 
   data?.filter((e: any) => {
     if (
@@ -24,11 +20,6 @@ const About = () => {
     }
   });
   const randomNum: any = Math.ceil(Math.random() * filterCountries.length);
-
-
-  console.log(location);
-
-
 
   for (let key in location.currencies) {
     if (location.currencies.hasOwnProperty(key)) {
@@ -58,8 +49,12 @@ const About = () => {
           <span className="capitalize">back</span>
         </Link>
 
-        <div className="mt-20 flex flex-col md:flex-row gap-20 items-center">
-          <img className=" w-64 md:w-60 xl:w-[450px]" src={location.flags.svg} alt="" />
+        <div className="mt-20 flex flex-col sm:flex-row gap-20 md:items-center">
+          <img
+            className=" w-64 md:w-60 m-auto sm:m-0 xl:w-[450px]"
+            src={location.flags.svg}
+            alt=""
+          />
           <div>
             <h1 className="text-2xl font-bold uppercase">
               {location.name.common}
