@@ -5,21 +5,19 @@ import { FaArrowLeft } from "react-icons/fa";
 
 const About = () => {
   const location = useLocation().state;
-  const { themes, data } = useContext(Context);
+  const { themes, data, filterCountry } = useContext(Context);
   let currency;
   const lang: {}[] = [];
-
-  const filterCountries: any = [];
+  const randomNum: any = Math.ceil(Math.random() * filterCountry?.length);
 
   data?.filter((e: any) => {
     if (
       e.region === location.region &&
       e.name.common !== location.name.common
     ) {
-      filterCountries.push(e);
+      filterCountry.push(e);
     }
   });
-  const randomNum: any = Math.ceil(Math.random() * filterCountries.length);
 
   for (let key in location.currencies) {
     if (location.currencies.hasOwnProperty(key)) {
@@ -56,11 +54,13 @@ const About = () => {
         </Link>
 
         <div className="mt-20 flex flex-col sm:flex-row gap-20 md:items-center">
-          <img
-            className=" w-64 md:w-60 m-auto sm:m-0 xl:w-[450px]"
-            src={location.flags.svg}
-            alt=""
-          />
+          <div className="w-64 h-80 md:w-60 m-auto sm:m-0 xl:w-[450px]">
+            <img
+              className="w-full h-full"
+              src={location.flags.svg}
+              alt=""
+            />
+          </div>
           <div>
             <h1 className="text-2xl font-bold uppercase">
               {location.name.common}
@@ -109,10 +109,10 @@ const About = () => {
                       ? `bg-[#202d36] shadow-slate-700`
                       : `bg-white shadow-black`
                   } shadow-md   px-3 py-1 text-[10px] md:text-sm`}
-                  to={`/about/${filterCountries[randomNum]?.name.common}`}
-                  state={filterCountries[randomNum]}
+                  to={`/about/${filterCountry[randomNum]?.name.common}`}
+                  state={filterCountry[randomNum]}
                 >
-                  {filterCountries[randomNum]?.name.common}
+                  {filterCountry[randomNum]?.name.common}
                 </Link>
                 <Link
                   className={`${
@@ -120,10 +120,10 @@ const About = () => {
                       ? `bg-[#202d36] shadow-slate-700`
                       : `bg-white shadow-black`
                   } shadow-md   px-3 py-1 text-[10px] md:text-sm`}
-                  to={`/about/${filterCountries[randomNum + 1]?.name.common}`}
-                  state={filterCountries[randomNum + 1]}
+                  to={`/about/${filterCountry[randomNum + 1]?.name.common}`}
+                  state={filterCountry[randomNum + 1]}
                 >
-                  {filterCountries[randomNum + 1]?.name.common}
+                  {filterCountry[randomNum + 1]?.name.common}
                 </Link>
                 <Link
                   className={`${
@@ -131,10 +131,10 @@ const About = () => {
                       ? `bg-[#202d36] shadow-slate-700`
                       : `bg-white shadow-black`
                   } shadow-md   px-3 py-1 text-[10px] md:text-sm`}
-                  to={`/about/${filterCountries[randomNum + 3]?.name.common}`}
-                  state={filterCountries[randomNum + 3]}
+                  to={`/about/${filterCountry[randomNum + 3]?.name.common}`}
+                  state={filterCountry[randomNum + 3]}
                 >
-                  {filterCountries[randomNum + 3]?.name.common}
+                  {filterCountry[randomNum + 3]?.name.common}
                 </Link>
               </div>
             </div>

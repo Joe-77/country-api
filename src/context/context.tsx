@@ -1,24 +1,26 @@
 import { createContext, useState } from "react";
-export const Context = createContext<any>(undefined)
+export const Context = createContext<any>(undefined);
 
-export const StoreData = ({children} : any)=> {
+export const StoreData = ({ children }: any) => {
+  const [themes, setThemes] : any = useState(false);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("");
+  const [data, setData] = useState([]);
+  const [filterCountry, setFilterCountries] = useState([]);
 
-  const [themes , setThemes] = useState(false)
-  const [search , setSearch] = useState("")
-  const [filter , setFilter] = useState("")
-  const [data , setData] = useState([])
+  const changeThemes: () => void = () => {
+    setThemes(!themes)
+  };
 
-  const changeThemes : ()=> void = ()=> {
-    setThemes(!themes);
-  }
-
-  const searchCountry = (e : string)=> {
+  const searchCountry = (e: string) => {
     setSearch(e);
-  }
+  };
 
-  const filterCountries :(e : any)=> void = (e: any)=> {
-    setFilter(e)
-  }
+  const filterCountries: (e: any) => void = (e: any) => {
+    setFilter(e);
+  };
+
+
 
   return (
     <Context.Provider
@@ -32,10 +34,11 @@ export const StoreData = ({children} : any)=> {
         filterCountries,
         data,
         setData,
+        setFilterCountries,
+        filterCountry,
       }}
     >
       {children}
     </Context.Provider>
   );
-
-}
+};
